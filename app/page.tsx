@@ -1,5 +1,5 @@
+import { LoginButton } from "@/components/auth/login-button";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -8,7 +8,9 @@ export default function Home() {
         <h1 className="text-6xl font-semibold  drop-shadow-md">Auth</h1>
         <p className="text-lg">A simple Authentication App</p>
         <div>
-          <Button variant="secondary">Sign In</Button>
+          <LoginButton>
+            <Button variant="secondary">Sign In</Button>
+          </LoginButton>
         </div>
       </div>
     </main>
