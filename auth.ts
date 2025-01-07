@@ -7,13 +7,13 @@ import { UserRole } from "@prisma/client";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
-    async signIn({ user }) {
-      const existingUser = await getUserById(user.id);
-      if (!existingUser || !existingUser.emailVerified) {
-        return false;
-      }
-      return true;
-    },
+    // async signIn({ user }) {
+    //   const existingUser = await getUserById(user.id);
+    //   if (!existingUser || !existingUser.emailVerified) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -30,7 +30,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       if (!token.sub) return token;
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
-      token.role = existingUser.role;
+      token.role = existingUser.role as UserRole;
 
       return token;
     },
